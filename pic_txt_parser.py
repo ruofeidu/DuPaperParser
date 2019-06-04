@@ -32,13 +32,16 @@ lines = None
 with open('href_list.txt', 'r') as f:
   lines = f.readlines()
 
-start = 98
-end = 150
+year = 2019
+# 437 has a bug
+# 628 has a bug
+start = 0
+end = 900
 
 for i, url in enumerate(lines):
   if i < start or i > end:
     continue
-  with open('raw/%d.html' % i, 'r') as f:
+  with open('raw_%d/%d.html' % (year, i), 'r') as f:
     contents = f.readlines()
   s = ''.join(contents)
   ac_list = re_access.findall(s)
@@ -51,9 +54,9 @@ for i, url in enumerate(lines):
     print(pic_cap)
     suffix = file_extension(pic_url)
     image = get_content(pic_url, header)
-    with open('data/%d_%d.%s' % (i, j, suffix), 'wb') as f:
+    with open('chi%d_data/%d_%d.%s' % (year, i, j, suffix), 'wb') as f:
       f.write(image)
-    with open('data/%d_%d.txt' % (i, j), 'w') as f:
+    with open('chi%d_data/%d_%d.txt' % (year, i, j), 'w') as f:
       f.write(pic_desc)
-    with open('data/%d_%d.cap' % (i, j), 'w') as f:
+    with open('chi%d_data/%d_%d.cap' % (year, i, j), 'w') as f:
       f.write(pic_cap)

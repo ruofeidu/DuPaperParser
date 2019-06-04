@@ -5,7 +5,8 @@ import re
 
 re_href = re.compile('href="([^"]*)"')
 
-document = pq(filename='chi2019.html')
+year = 2019
+document = pq(filename='chi%d.html' % year)
 html_link_list = document('a[name="FullTextHtml"]')
 
 print(len(html_link_list))
@@ -19,5 +20,5 @@ for html in html_link_list:
   href = href_match.groups()[0]
   href_list.append(href)
 
-with open('href_list.txt', 'w') as f:
+with open('chi%d_href_list.txt' % year, 'w') as f:
   f.writelines('\n'.join(href_list))

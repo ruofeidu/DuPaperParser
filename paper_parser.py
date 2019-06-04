@@ -20,11 +20,12 @@ def get_content(url, header):
   return requests.get(url, headers=header).content
 
 
-start = 102
+year = 2019
+start = 0
 end = 900
 
 lines = None
-with open('href_list.txt', 'r') as f:
+with open('chi%d_href_list.txt' % year, 'r') as f:
   lines = f.readlines()
 for i, url in enumerate(lines):
   if i < start or i > end:
@@ -32,7 +33,7 @@ for i, url in enumerate(lines):
   url = prefix + url
   print(url)
   content = get_content(url, header)
-  with open('raw/%d.html' % i, 'wb') as f:
+  with open('chi%d_raw/%d.html' % (year, i), 'wb') as f:
     f.write(content)
   print("%d / %d" % (i, len(lines)))
   time.sleep(20)
