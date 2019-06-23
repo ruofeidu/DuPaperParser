@@ -8,7 +8,7 @@ import time
 prefix = 'https://dl.acm.org/'
 header = {
     'User-Agent':
-        'Mozilla/6.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36'
+    'Mozilla/6.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36'
 }
 
 
@@ -21,8 +21,8 @@ def get_content(url, header):
 
 
 year = 2019
-start = 0
-end = 900
+start = 624
+end = 624
 
 lines = None
 with open('chi%d_href_list.txt' % year, 'r') as f:
@@ -36,4 +36,4 @@ for i, url in enumerate(lines):
   with open('chi%d_raw/%d.html' % (year, i), 'wb') as f:
     f.write(content)
   print("%d / %d" % (i, len(lines)))
-  time.sleep(20)
+  time.sleep(1)
